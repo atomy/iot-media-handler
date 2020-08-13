@@ -12,7 +12,7 @@ public class Config {
     public static String getApiUrl() {
         String apiUrl = System.getenv("API_URL");
 
-        if (apiUrl.length() <= 0) {
+        if (apiUrl == null || apiUrl.length() <= 0) {
             throw new RuntimeException("Missing env *API_URL*!");
         }
 
@@ -22,7 +22,7 @@ public class Config {
     public static String getNatsUri() {
         String natsUri = System.getenv("NATS_URI");
 
-        if (natsUri.length() <= 0) {
+        if (null == natsUri || natsUri.length() <= 0) {
             throw new RuntimeException("Missing env *NATS_URI*!");
         }
 

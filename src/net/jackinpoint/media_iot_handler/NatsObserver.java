@@ -25,7 +25,7 @@ public class NatsObserver {
      */
     public void connect(String uri) throws IOException, InterruptedException {
         this.connection = Nats.connect(uri);
-        System.out.println("Connection-Status is: " + this.connection.getStatus());
+        System.out.println(String.format("Connection-Status to \"%s\" is: %s", uri, this.connection.getStatus()));
     }
 
     /**
