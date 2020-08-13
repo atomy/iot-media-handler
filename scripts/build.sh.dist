@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+docker build -f scripts/docker/amd64/build/Dockerfile -t atomy/media-iot-handler-builder .
+
+docker run -v `pwd`:/app -w /app atomy/media-iot-handler-builder gradle fatJar
+docker build -f scripts/docker/amd64/bundle/Dockerfile -t atomy/media-iot-handler .
+
+docker tag atomy/media-iot-handler:latest xxxx.dkr.ecr.eu-central-1.amazonaws.com/atomy/media-iot-handler

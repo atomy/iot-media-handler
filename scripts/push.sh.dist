@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+docker push xxxxxx.dkr.ecr.eu-central-1.amazonaws.com/atomy/media-iot-handler
