@@ -1,5 +1,7 @@
 package net.jackinpoint.media_iot_handler;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -29,10 +31,11 @@ public class MessageHandler {
     public void handle(Message message) {
         if (!this.validate(message.content)) {
             System.out.println("DISMISSing invalid message: " + message.content);
+            return;
         }
 
-        String json = String.format("{\"content\": \"%s\"}", message.content);
-        RequestBody body = RequestBody.create(json, JSON);
+        NatsIotMessage natsIotMessage = (new Gson()).fromJson(message.content, NatsIotMessage.class);
+        RequestBody body = RequestBody.create((new Gson()).toJson(natsIotMessage), JSON);
         Request request = new Request.Builder()
                 .url(this.url + "/event")
                 .post(body)
@@ -64,7 +67,20 @@ public class MessageHandler {
      * @return boolean
      */
     public boolean validate(String messageContent) {
-        Matcher matcher = VALID_MESSAGE_CONTENT.matcher(messageContent);
-        return matcher.find();
+        Gson gson = new Gson();
+        NatsIotMessage natsIotMessage = null;
+
+        try {
+            natsIotMessage = gson.fromJson(messageContent, NatsIotMessage.class);
+        } catch (JsonSyntaxException jsonSyntaxException) {
+            jsonSyntaxException.printStackTrace();
+            return false;
+        }
+
+        if (null == natsIotMessage.action || natsIotMessage.action.length() <= 0) {
+            return false;
+        }
+
+        return true;
     }
 }

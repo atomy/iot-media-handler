@@ -24,6 +24,7 @@ public class NatsObserver {
      * @throws InterruptedException
      */
     public void connect(String uri) throws IOException, InterruptedException {
+        System.out.println(String.format("Connecting to \"%s\"", uri));
         this.connection = Nats.connect(uri);
         System.out.println(String.format("Connection-Status to \"%s\" is: %s", uri, this.connection.getStatus()));
     }
@@ -42,8 +43,8 @@ public class NatsObserver {
             this.messageCallback.onNewMessage(new Message(response));
         });
 
-        this.dispatcher.subscribe("iot.meta");
-        System.out.println("SUBSCRIBED to *iot.meta*");
+        this.dispatcher.subscribe("iot.incomming");
+        System.out.println("SUBSCRIBED to *iot.incomming*");
     }
 
     /**
