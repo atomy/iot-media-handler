@@ -5,28 +5,19 @@ package net.jackinpoint.media_iot_handler;
  */
 public class Config {
     /**
-     * Retrieve setting for api endpoint url.
-     *
-     * @return String
-     */
-    public static String getApiUrl() {
-        String apiUrl = System.getenv("API_URL");
-
-        if (apiUrl == null || apiUrl.length() <= 0) {
-            throw new RuntimeException("Missing env *API_URL*!");
-        }
-
-        return apiUrl;
-    }
-
-    /**
      * Build and return nats-uri for connection.
      *
      * @return String nats-uri e.g. nats://user1:secret2@1.1.1.1:8888
      */
     public static String getNatsUri() {
         String natsHost = System.getenv("NATS_HOST");
-        int natsPortNumber = Integer.parseInt(System.getenv("NATS_PORT"));
+        String natsPort = System.getenv("NATS_PORT");
+
+        if (null == natsPort) {
+            throw new RuntimeException("Missing env *NATS_HOST*!");
+        }
+
+        int natsPortNumber = Integer.parseInt(natsPort);
 
         if (null == natsHost || natsHost.length() <= 0) {
             throw new RuntimeException("Missing env *NATS_HOST*!");

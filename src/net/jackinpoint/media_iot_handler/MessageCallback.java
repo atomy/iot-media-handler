@@ -10,7 +10,7 @@ public class MessageCallback {
         this.messageHandler = messageHandler;
     }
 
-    public void onNewMessage(Message message) {
-        this.messageHandler.handle(message);
+    public void onNewMessage(String rawJson) {
+        this.messageHandler.handle(rawJson);
     }
 }

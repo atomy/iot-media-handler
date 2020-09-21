@@ -17,7 +17,7 @@ public class Main {
 
         try {
             natsObserver.connect(Config.getNatsUri());
-            natsObserver.setOnNewMessage(new MessageCallback(new MessageHandler(Config.getApiUrl())));
+            natsObserver.setOnNewMessage(new MessageCallback(new MessageHandler()));
             natsObserver.subscribe();
         } catch (IOException e) {
             e.printStackTrace();

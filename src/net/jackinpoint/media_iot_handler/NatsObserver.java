@@ -40,11 +40,11 @@ public class NatsObserver {
 
             String response = new String(message.getData(), StandardCharsets.UTF_8);
             System.out.println("Received message: " + response);
-            this.messageCallback.onNewMessage(new Message(response));
+            this.messageCallback.onNewMessage(response);
         });
 
-        this.dispatcher.subscribe("iot.incomming");
-        System.out.println("SUBSCRIBED to *iot.incomming*");
+        this.dispatcher.subscribe("heartbeat");
+        System.out.println("SUBSCRIBED to *heartbeat*");
     }
 
     /**
