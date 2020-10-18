@@ -9,7 +9,7 @@ import java.util.Date;
  * Class NatsIotMessage.
  */
 public class NatsIotMessage {
-    @SerializedName("emitter-version")
+    @SerializedName("emitter_version")
     public String clientVersion;
 
     public String action;
