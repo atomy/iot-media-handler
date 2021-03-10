@@ -8,7 +8,7 @@ then
   exit 1
 fi
 
-ip=192.168.2.20
+ip=2003:d4:1f23:ba00:5ff:4195:12d:ae12
 
 echo "Deploying to: ${ip}..."
 scp -o StrictHostKeyChecking=no ~/.docker/config.json pi@${ip}:~/.docker/config.json
