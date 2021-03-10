@@ -2,4 +2,5 @@ java-cli:
   image: xxx.dkr.ecr.eu-central-1.amazonaws.com/atomy/media-iot-handler
   restart: always
   environment:
-    - NATS_URI=nats://2003:d4:1f23:ba00:5ff:4195:12d:ae12:4222
+    - NATS_HOST=192.168.2.20
+    - NATS_PORT=4222
