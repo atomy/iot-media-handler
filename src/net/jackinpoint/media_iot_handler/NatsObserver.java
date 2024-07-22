@@ -43,8 +43,8 @@ public class NatsObserver {
             this.messageCallback.onNewMessage(response);
         });
 
-        this.dispatcher.subscribe("heartbeat");
-        System.out.println("SUBSCRIBED to *heartbeat*");
+        this.dispatcher.subscribe("garden");
+        System.out.println("SUBSCRIBED to *garden*");
     }
 
     /**

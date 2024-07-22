@@ -16,6 +16,7 @@ public class Main {
         NatsObserver natsObserver = new NatsObserver();
 
         try {
+            System.out.println("Connecting to backend: " + Config.getNatsUri());
             natsObserver.connect(Config.getNatsUri());
             natsObserver.setOnNewMessage(new MessageCallback(new MessageHandler()));
             natsObserver.subscribe();
